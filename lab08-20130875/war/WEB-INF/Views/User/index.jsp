@@ -31,7 +31,6 @@
 		<h2>BIENVENIDO </h2>
 		<h3>Este es la parte de proyectos donde podemos administar los datos de aca:</h3>
 		<h3>Administrador: </h3>
-		<ul>ordenar</ul>
 	</div>
 
 

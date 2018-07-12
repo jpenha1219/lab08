@@ -2,6 +2,7 @@ package controller.user;
 
 import controller.*;
 import java.io.IOException;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.servlet.RequestDispatcher;
@@ -10,34 +11,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Project;
+import model.Role;
+import model.Users;
 
 @SuppressWarnings("serial")
 public class UserControllerUpdate extends HttpServlet {
+	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		String nombre=request.getParameter("nuevoNombre");
-		String resultado=request.getParameter("nuevoResultado");
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		if(nombre!=null){
+		Long id=Long.parseLong(request.getParameter("id"));
+		String name=request.getParameter("name");
+		String surname=request.getParameter("surname");
 		
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		if(name!=null){
 			try {
-				Project proyect = pm.getObjectById(Project.class, Long.parseLong(id));
-				proyect.setName(nombre);
+				Long id2=Long.parseLong(request.getParameter("idRole"));
+				Users users = pm.getObjectById(Users.class, id);
+				Role role = pm.getObjectById(Role.class, id2);
+				users.setName(name);
+				users.setSurname(surname);
+				users.setIdRole(role.getId());
+				users.setRole(role.getName());
+				
 			} finally {
 				pm.close();
 			}
 
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/project");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/user");
 			dispatcher.forward(request, response);	
 		}else{
+			System.out.println("entro else UPdate Users");
+
 			try{
-				Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
-				request.setAttribute("project", project);
+				Users users = pm.getObjectById(Users.class, id);
+				String query = "select from " + Role.class.getName();
+				List<Role> role = (List<Role>) pm.newQuery(query).execute();
+				request.setAttribute("users", users);
+				request.setAttribute("role", role);	
 				}finally{
 				pm.close();
 				}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/modificar.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/User/updateUsuario.jsp");
 			dispatcher.forward(request, response);	}
 	}
 }

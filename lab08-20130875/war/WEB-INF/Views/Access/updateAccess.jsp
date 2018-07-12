@@ -14,34 +14,16 @@
 <link rel="stylesheet" type="text/css" href="/css/myStyle.css">
 <title>MODIFICAR</title>
 <%
+System.out.println("entro jsp updateaccess");
+
 	UserService us = UserServiceFactory.getUserService();
 	User user = us.getCurrentUser();
 	Access access = (Access) request.getAttribute("access");
+	List<Role> role = (List<Role>) request.getAttribute("role");
+	List<Resource> resource = (List<Resource>) request.getAttribute("resource");
 %>
 </head>
 <body>
-	<script type="text/javascript">
-		function validate(f) {
-			var correct = true;
-			var rpta = "";
-			var rpta2 = "";
-			if (f.name.value.length < 2) {
-				rpta = "completar";
-				correct = false;
-			}
-			if (f.result.value.length < 2) {
-				rpta2 = "completar";
-				correct = false;
-			}
-			if (!correct) {
-				document.getElementById("rpta").innerHTML = rpta;
-				document.getElementById("rpta2").innerHTML = rpta2;
-				return correct;
-			}
-
-			return correct;
-		}
-	</script>
 	<ul>
 		<li><a class="active" href="#home"><%=user.getEmail()%></a></li>
 		<li><a href="/user/login">Inicio</a></li>
@@ -53,25 +35,36 @@
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
 	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
-		<form action="/project/update" method="Get"
+		<form action="/access/update" method="Get"
 			onsubmit="return validate(this)">
 			<table>
 				<tr>
 					<th colspan="2">MODIFICAR</th>
 				</tr>
 				<tr>
-					<td>Rol:</td>
-					<td><input id="name" type="text"
-						value="<%=access.getNameRole()%>" name="nuevoNombre"></td>
-					<td id="rpta"></td>
+					<td>Rol</td>
+					<td><select name="role">
+							<%
+								for (Role a : role) {
+							%>
+							<option value="<%=a.getId()%>"><%=a.getName()%></option>
+							<%
+								}
+							%>
+					</select></td>
 				</tr>
 				<tr>
-					<td>Recurso: </td>
-					<td><input id="result" type="text"
-						value="<%=access.getNameResource()%>" name="nuevoResultado"></td>
-					<td id="rpta2"></td>
+					<td>Recurso</td>
+					<td><select name="resource">
+							<%
+								for (Resource a : resource) {
+							%>
+							<option value="<%=a.getId()%>"><%=a.getResource()%></option>
+							<%
+								}
+							%>
+					</select></td>
 				</tr>
-
 				<tr>
 					<td colspan="2"><input type="hidden" name="id"
 						value="<%=access.getId()%>"> <input type="submit"

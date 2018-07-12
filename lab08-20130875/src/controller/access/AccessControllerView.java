@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Project;
+import model.Access;
 
 @SuppressWarnings("serial")
 public class AccessControllerView extends HttpServlet {
@@ -18,12 +18,12 @@ public class AccessControllerView extends HttpServlet {
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try{
-		Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
-		request.setAttribute("project", project);
+		Access access = pm.getObjectById(Access.class, Long.parseLong(request.getParameter("id")));
+		request.setAttribute("access", access);
 		}finally{
 		pm.close();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/view.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Access/viewAccess.jsp");
 		dispatcher.forward(request, response);													
 	}
 }

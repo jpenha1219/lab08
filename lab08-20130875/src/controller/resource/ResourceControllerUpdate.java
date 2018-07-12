@@ -10,35 +10,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Project;
+import model.Resource;
 
 @SuppressWarnings("serial")
 public class ResourceControllerUpdate extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		String nombre=request.getParameter("nuevoNombre");
-		String resultado=request.getParameter("nuevoResultado");
+		Long id=Long.parseLong(request.getParameter("id"));
+		String nombre=request.getParameter("resource");
+		Boolean estado=Boolean.valueOf(request.getParameter("estado"));
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		if(nombre!=null){
 		
 			try {
-				Project proyect = pm.getObjectById(Project.class, Long.parseLong(id));
-				proyect.setName(nombre);
+				Resource resource = pm.getObjectById(Resource.class, id);
+				resource.setResource(nombre);
+				resource.setState(estado);
 				
 			} finally {
 				pm.close();
 			}
 
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/project");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resource");
 			dispatcher.forward(request, response);	
 		}else{
 			try{
-				Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
-				request.setAttribute("project", project);
+				Resource resource = pm.getObjectById(Resource.class, id);
+				request.setAttribute("resource", resource);
 				}finally{
 				pm.close();
 				}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/modificar.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Resource/updateResource.jsp");
 			dispatcher.forward(request, response);	}
 	}
 }

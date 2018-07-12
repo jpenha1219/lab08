@@ -24,7 +24,7 @@ public class ProjectControllerDelete extends HttpServlet {
 		} finally{
 			pm.close();
 		}
-		RequestDispatcher dispatcher =  getServletContext().getRequestDispatcher("/proyect");
+		RequestDispatcher dispatcher =  getServletContext().getRequestDispatcher("/project");
 		dispatcher.forward(request, response);
 	}
 }

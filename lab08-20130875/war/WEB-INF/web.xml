@@ -25,7 +25,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-class>controller.project.ProjectControllerDelete</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ProjectControllerView</servlet-name>
+		<servlet-name>ProjectControllerDelete</servlet-name>
 		<url-pattern>/project/delete</url-pattern>
 	</servlet-mapping>
 	<servlet>
@@ -33,7 +33,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-class>controller.project.ProjectControllerView</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ProjectControllerDelete</servlet-name>
+		<servlet-name>ProjectControllerView</servlet-name>
 		<url-pattern>/project/view</url-pattern>
 	</servlet-mapping>
 	<servlet>

@@ -21,22 +21,6 @@
 </head>
 <body>
 
-	<script type="text/javascript">
-		function validate(f) {
-			var correct = true;
-			var rpta = "";
-
-			if (f.role.value.length < 2) {
-				rpta = "completar";
-				correct = false;
-			}
-			if (!correct) {
-				document.getElementById("rpta").innerHTML = rpta;
-				return correct;
-			}
-			return correct;
-		}
-	</script>
 	<ul>
 		<li><a class="active" href="#home"><%=user.getEmail()%></a></li>
 		<li><a href="/user/login">Inicio</a></li>
@@ -56,16 +40,13 @@
 				</tr>
 				<tr>
 					<td>Recurso:</td>
-					<td><input id="role" type="text"
-						value="<%=resource.getResource()%>" name="resource"></td>
-					<td id="rpta"></td>
+					<td><input type="text" value="<%=resource.getResource()%>"
+						name="resource"></td>
 				</tr>
 				<tr>
 					<td>Estado:</td>
-					<td>
-						<input type="radio" name="gender" value="true" checked>true<br> 
-						<input type="radio" name="gender" value="false">false
-					</td>
+					<td><input type="radio" name="estado" value="true" checked>Activar<br>
+						<input type="radio" name="estado" value="false">Desactivar</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="hidden" name="id"

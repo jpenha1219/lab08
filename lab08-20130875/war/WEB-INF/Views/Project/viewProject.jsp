@@ -31,23 +31,22 @@
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
 
-	<h1>DATOS DEL PROYECTO</h1>
-	<h2>
-		<a href="/proyect">Menu</a>
-	</h2>
-	<table>
-		<tr>
-			<th>Nombre</th>
-			<th>Area</th>
-			<th>Estado</th>
-			
-		</tr>
-		<tr>
-			<td><%=project.getName()%></td>
-			<td><%=project.getArea()%></td>
-			<td><%=project.getState()%></td>
-			
-		</tr>
-	</table>
+	<div style="margin-left: 25%; padding: 1px 16px; height: 500px;">
+
+		<table>
+			<tr>
+				<th>Nombre</th>
+				<th>Area</th>
+				<th>Estado</th>
+
+			</tr>
+			<tr>
+				<td><%=project.getName()%></td>
+				<td><%=project.getArea()%></td>
+				<td><%=project.getState()%></td>
+
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

@@ -16,8 +16,8 @@ public class Project {
 	@Persistent
 	private Double area;
 	@Persistent
-	private String state;
-	public Project(String name, Double area, String state) {
+	private Boolean state;
+	public Project(String name, Double area, Boolean state) {
 		super();
 		this.name = name;
 		this.area = area;
@@ -41,10 +41,10 @@ public class Project {
 	public void setArea(Double area) {
 		this.area = area;
 	}
-	public String getState() {
+	public Boolean getState() {
 		return state;
 	}
-	public void setState(String state) {
+	public void setState(Boolean state) {
 		this.state = state;
 	}
 	

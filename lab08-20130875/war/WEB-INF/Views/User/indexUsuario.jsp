@@ -14,6 +14,7 @@
 <%
 	UserService us = UserServiceFactory.getUserService();
 	User user = us.getCurrentUser();
+	@SuppressWarnings("unchecked")
 	List<Users> users = (List<Users>) request.getAttribute("users");
 %>
 </head>
@@ -29,7 +30,7 @@
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
 	<% if (users.size() > 0) {%>
-	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">	
+	<div style="margin-left: 25%; padding: 1px 16px; height: 500px;">	
 	<table border="0" cellspacing="1" cellpadding="5">
 		<tr>
 			<td colspan="3" id="t1"><a href="/user/add">Crear</a></td>

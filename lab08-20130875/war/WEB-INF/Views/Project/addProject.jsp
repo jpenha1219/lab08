@@ -75,8 +75,8 @@
 				<tr>
 					<td>Estado</td>
 					<td><select id="state" name="state">
-							<option value="approved">Aprobado</option>
-							<option value="disapproved">Desaprobado</option>
+							<option value="true">Aprobado</option>
+							<option value="false">Desaprobado</option>
 					</select></td>
 				</tr>
 

@@ -30,19 +30,17 @@
 		<li><a href="/project">Proyectos</a></li>
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
-	<h1>DATOS DEL PROYECTO</h1>
-	<h2>
-		<a href="/proyect">Menu</a>
-	</h2>
-	<table>
-		<tr>
-			<th>Nombre</th>
-			<th>Estado</th>
-		</tr>
-		<tr>
-			<td><%=resource.getResource()%></td>
-			<td><%=resource.getState()%></td>
-		</tr>
-	</table>
+	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+		<table>
+			<tr>
+				<th>Nombre</th>
+				<th>Estado</th>
+			</tr>
+			<tr>
+				<td><%=resource.getResource()%></td>
+				<td><%=resource.getState()%></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

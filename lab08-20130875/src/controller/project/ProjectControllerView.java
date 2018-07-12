@@ -23,7 +23,7 @@ public class ProjectControllerView extends HttpServlet {
 		}finally{
 		pm.close();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/view.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/viewProject.jsp");
 		dispatcher.forward(request, response);													
 	}
 }

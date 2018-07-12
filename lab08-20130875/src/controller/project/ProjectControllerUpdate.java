@@ -15,30 +15,36 @@ import model.Project;
 @SuppressWarnings("serial")
 public class ProjectControllerUpdate extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		String nombre=request.getParameter("nuevoNombre");
-		String resultado=request.getParameter("nuevoResultado");
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		if(nombre!=null){
+		Long id = Long.parseLong(request.getParameter("id"));
+		String nombre = request.getParameter("name");
+		String area = request.getParameter("area");
 		
+		Boolean estado = Boolean.valueOf(request.getParameter("state"));
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		if (nombre != null) {
+
 			try {
-				Project project = pm.getObjectById(Project.class, Long.parseLong(id));
+				Project project = pm.getObjectById(Project.class, id);
 				project.setName(nombre);
-				
+				project.setName(area);
+				project.setState(estado);
+
 			} finally {
 				pm.close();
 			}
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/project");
-			dispatcher.forward(request, response);	
-		}else{
-			try{
-				Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
+			dispatcher.forward(request, response);
+		} else {
+			try {
+				Project project = pm.getObjectById(Project.class, id);
 				request.setAttribute("proyect", project);
-				}finally{
+			} finally {
 				pm.close();
-				}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/modificar.jsp");
-			dispatcher.forward(request, response);	}
+			}
+			RequestDispatcher dispatcher = getServletContext()
+					.getRequestDispatcher("/WEB-INF/Views/Project/updateProject.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 }

@@ -15,26 +15,12 @@
 	System.out.print("jsp");
 	UserService us = UserServiceFactory.getUserService();
 	User user = us.getCurrentUser();
+	@SuppressWarnings("unchecked")
 	List<Role> role = (List<Role>) request.getAttribute("role");
 %>
 </head>
 <body>
-	<script type="text/javascript">
-		function validate(f) {
-			var correct = true;
-			var rpta = "";
-			if (f.email.value.length < 2) {
-				rpta = "completar";
-				correct = false;
-			}
-			if (!correct) {
-				document.getElementById("rpta").innerHTML = rpta;
-				return correct;
-			}
-
-			return correct;
-		}
-	</script>
+	
 	<%
 		if (role.size() > 0) {
 	%>
@@ -56,8 +42,18 @@
 					<th colspan="3">Crear Usuario</th>
 				</tr>
 				<tr>
+					<td>Nombre:</td>
+					<td><input type="text"  name="name"></td>
+					<td id="rpta"></td>
+				</tr>
+				<tr>
+					<td>Apellido:</td>
+					<td><input type="text"  name="surname"></td>
+					<td id="rpta"></td>
+				</tr>
+				<tr>
 					<td>Correo:</td>
-					<td><input type="text" id="correo" name="email"></td>
+					<td><input type="text"  name="email"></td>
 					<td id="rpta"></td>
 				</tr>
 				<tr>

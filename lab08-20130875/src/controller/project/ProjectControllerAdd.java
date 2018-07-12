@@ -19,7 +19,7 @@ public class ProjectControllerAdd extends HttpServlet {
 
 		String name=request.getParameter("name");
 		String area=request.getParameter("area");
-		String state=request.getParameter("state");
+		Boolean state=Boolean.valueOf(request.getParameter("state"));
 		if(name!=null){
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			Project p = new Project(name,Double.parseDouble(area),state);

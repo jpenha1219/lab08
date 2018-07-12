@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Project;
+import model.Role;
 
 @SuppressWarnings("serial")
 public class RoleControllerView extends HttpServlet {
@@ -18,12 +18,12 @@ public class RoleControllerView extends HttpServlet {
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try{
-		Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
-		request.setAttribute("project", project);
+		Role role = pm.getObjectById(Role.class, Long.parseLong(request.getParameter("id")));
+		request.setAttribute("role", role);
 		}finally{
 		pm.close();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/view.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Roles/viewRole.jsp");
 		dispatcher.forward(request, response);													
 	}
 }

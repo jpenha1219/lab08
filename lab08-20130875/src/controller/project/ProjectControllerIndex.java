@@ -16,7 +16,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 import model.Access;
 import model.Project;
 import model.Resource;
-import model.Role;
 import model.Users;
 @SuppressWarnings("serial")
 public class ProjectControllerIndex extends HttpServlet {

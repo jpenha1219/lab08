@@ -10,35 +10,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Project;
+import model.Role;
 
 @SuppressWarnings("serial")
 public class RoleControllerUpdate extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		String nombre=request.getParameter("nuevoNombre");
-		String resultado=request.getParameter("nuevoResultado");
+		Long id=Long.parseLong(request.getParameter("id"));
+		String nombre=request.getParameter("role");
+		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		if(nombre!=null){
 		
 			try {
-				Project proyect = pm.getObjectById(Project.class, Long.parseLong(id));
-				proyect.setName(nombre);
+				Role role = pm.getObjectById(Role.class, id);
+				role.setName(nombre);
 				
 			} finally {
 				pm.close();
 			}
 
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/project");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/role");
 			dispatcher.forward(request, response);	
 		}else{
 			try{
-				Project project = pm.getObjectById(Project.class, Long.parseLong(request.getParameter("id")));
-				request.setAttribute("project", project);
+				Role role = pm.getObjectById(Role.class, id);
+				request.setAttribute("role", role);
 				}finally{
 				pm.close();
 				}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Project/modificar.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Roles/updateRole.jsp");
 			dispatcher.forward(request, response);	}
 	}
 }

@@ -31,19 +31,18 @@
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
 
-	<h1>DATOS DEL PROYECTO</h1>
-	<h2>
-		<a href="/proyect">Menu</a>
-	</h2>
-	<table>
-		<tr>
-			<th>Role</th>
-			<th>Recurso</th>
-		</tr>
-		<tr>
-			<td><%=access.getNameRole()%></td>
-			<td><%=access.getNameResource()%></td>
-		</tr>
-	</table>
+	<div style="margin-left: 25%; padding: 1px 16px; height: 500px;">
+
+		<table>
+			<tr>
+				<th>Role</th>
+				<th>Recurso</th>
+			</tr>
+			<tr>
+				<td><%=access.getNameRole()%></td>
+				<td><%=access.getNameResource()%></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

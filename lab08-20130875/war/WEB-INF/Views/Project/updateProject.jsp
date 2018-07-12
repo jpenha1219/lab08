@@ -21,28 +21,6 @@
 %>
 </head>
 <body>
-	<script type="text/javascript">
-		function validate(f) {
-			var correct = true;
-			var rpta = "";
-			var rpta2 = "";
-			if (f.name.value.length < 2) {
-				rpta = "completar";
-				correct = false;
-			}
-			if (f.result.value.length < 2) {
-				rpta2 = "completar";
-				correct = false;
-			}
-			if (!correct) {
-				document.getElementById("rpta").innerHTML = rpta;
-				document.getElementById("rpta2").innerHTML = rpta2;
-				return correct;
-			}
-
-			return correct;
-		}
-	</script>
 	<ul>
 		<li><a class="active" href="#home"><%=user.getEmail()%></a></li>
 		<li><a href="/user/login">Inicio</a></li>
@@ -54,29 +32,28 @@
 		<li><a href="/user/logout">Salir</a></li>
 	</ul>
 	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
-		<form action="/project/update" method="Get"
-			onsubmit="return validate(this)">
+		<form action="/project/update" method="Get">
 			<table>
 				<tr>
 					<th colspan="2">MODIFICAR</th>
 				</tr>
 				<tr>
 					<td>Nombre del proyecto:</td>
-					<td><input id="name" type="text"
-						value="<%=project.getName()%>" name="name"></td>
-					<td id="rpta"></td>
+					<td><input type="text" value="<%=project.getName()%>"
+						name="name"></td>
+
 				</tr>
 				<tr>
 					<td>Area:</td>
-					<td><input id="result" type="text"
-						value="<%=project.getArea()%>" name="area"></td>
-					<td id="rpta2"></td>
+					<td><input type="text" value="<%=project.getArea()%>"
+						name="area"></td>
+
 				</tr>
 				<tr>
 					<td>Estado</td>
-					<td><select id="state" name="state">
-							<option value="approved">Aprobado</option>
-							<option value="disapproved">Desaprobado</option>
+					<td><select name="state">
+							<option value="true">Aprobado</option>
+							<option value="false">Desaprobado</option>
 					</select></td>
 				</tr>
 

@@ -16,33 +16,14 @@
 <%
 	UserService us = UserServiceFactory.getUserService();
 	User user = us.getCurrentUser();
-	Users users = (Users) request.getAttribute("role");
+	Users users = (Users) request.getAttribute("users");
+	List<Role> role=(List<Role>)request.getAttribute("role");
+	System.out.println("update usuario jsp");
 %>
 </head>
 <body>
 
-	<script type="text/javascript">
-		function validate(f) {
-			var correct = true;
-			var rpta = "";
-			var rpta2 = "";
-			if (f.name.value.length < 2) {
-				rpta = "completar";
-				correct = false;
-			}
-			if (f.result.value.length < 2) {
-				rpta2 = "completar";
-				correct = false;
-			}
-			if (!correct) {
-				document.getElementById("rpta").innerHTML = rpta;
-				document.getElementById("rpta2").innerHTML = rpta2;
-				return correct;
-			}
 
-			return correct;
-		}
-	</script>
 	<ul>
 		<li><a class="active" href="#home"><%=user.getEmail()%></a></li>
 		<li><a href="/user/login">Inicio</a></li>
@@ -57,17 +38,17 @@
 
 
 	<div style="margin-left: 25%; padding: 1px 16px; height: 1000px;">
+		
 
-		<form action="/project/update" method="Get"
-			onsubmit="return validate(this)">
+		<form action="/user/update" method="Get">
 			<table>
 				<tr>
 					<th colspan="2">MODIFICAR</th>
 				</tr>
 				<tr>
 					<td>Nombre:</td>
-					<td><input id="name" type="text"
-						value="<%=users.getName()%>" name="name"></td>
+					<td><input id="name" type="text" value="<%=users.getName()%>"
+						name="name"></td>
 					<td id="rpta"></td>
 				</tr>
 				<tr>
@@ -77,9 +58,16 @@
 					<td id="rpta2"></td>
 				</tr>
 				<tr>
+					<td>Rol</td>
+					<td><select name="idRole">
+							<%for(Role a:role) {%>
+							<option value="<%=a.getId()%>"><%=a.getName()%></option>
+							<%} %>
+					</select></td>
+				</tr>
+				<tr>
 					<td colspan="2"><input type="hidden" name="id"
-						value="<%=users.getId()%>"> <input type="submit"
-						value="Modificar"></td>
+						value="<%=users.getId()%>"> <input type="submit" value="Modificar"></td>
 				</tr>
 			</table>
 		</form>

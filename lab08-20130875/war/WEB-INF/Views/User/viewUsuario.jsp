@@ -21,7 +21,7 @@
 </head>
 <body>
 	<ul>
-		<li><a class="active" href="#home"><%=user.getEmail()%></a></li>
+		<li><a class="active" href="/user/view"><%=user.getEmail()%></a></li>
 		<li><a href="/user/login">Inicio</a></li>
 		<li><a href="/user">Usuarios</a></li>
 		<li><a href="/role">Roles</a></li>
